@@ -1,5 +1,7 @@
 *.h5
 /weights/*.weights
+/weights/yolov3.tf.data-00000-of-00001
+/weights/yolov3.tf.index
 /weights/checkpoint
 *.tar
 *.tfrecord

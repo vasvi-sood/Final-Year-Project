@@ -10,6 +10,10 @@ from yolov3_tf2.dataset import transform_images, load_tfrecord_dataset
 from yolov3_tf2.utils import draw_outputs
 from flask import Flask, request, Response, jsonify, send_from_directory, abort, render_template
 import os
+# Importing libs
+from PIL import Image
+from pytesseract import pytesseract
+import gtts
 
 # customize your API through the following parameters
 classes_path = './data/labels/coco.names'
@@ -96,6 +100,17 @@ def get_detections():
     except FileNotFoundError:
         abort(404)
 
+@app.route("/iText", methods=['POST'])
+def get_text():
+    image = request.files["images"]
+    image_name = image.filename
+    image.save(os.path.join(os.getcwd(), image_name))
+    text= pytesseract.image_to_string(Image.open(image_name))
+    try:
+        return Response(response=text, status=200, mimetype='image/png')
+    except FileNotFoundError:
+        abort(404)
+    
 # API that returns image with detections on it
 @app.route('/image', methods= ['POST'])
 def get_image():
@@ -133,6 +148,8 @@ def get_image():
         return Response(response=response, status=200, mimetype='image/png')
     except FileNotFoundError:
         abort(404)
+
+#API that convert text image to voice
 
 # API that returns homepage
 @app.route('/', methods=['GET'])
