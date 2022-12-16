@@ -16,8 +16,18 @@
     background-position: center;
 }
 
+.text-preview{
+    
+}
+
 input[type="file"] {
     display: none;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .upload-label{
