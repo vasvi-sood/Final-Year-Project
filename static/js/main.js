@@ -22,6 +22,7 @@ $(document).ready(function () {
   }
   $("#images").change(function () {
     $(".img-preview").show();
+    $("#imagePreview").show()
     $("#btn-predict").show();
     $("#result").text("");
     $("#result").hide();
