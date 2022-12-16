@@ -21,8 +21,8 @@ $(document).ready(function () {
     }
   }
   $("#images").change(function () {
-    $(".img-preview").show();
-    $("#imagePreview").show()
+    $(".image-section").show();
+    $(".predict").show();
     $("#btn-predict").show();
     $("#result").text("");
     $("#result").hide();
@@ -30,9 +30,11 @@ $(document).ready(function () {
   });
 
   $("#simage").change(function () {
-    $(".text").show();
+    $(".image-section").show();
+    $(".speech").css("display", "block");
     $("#btn-text").show();
     $('.text-preview').show()
+    readURL(this)
     console.log(simage.files)
   });
 
